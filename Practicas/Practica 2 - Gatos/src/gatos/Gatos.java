@@ -5,6 +5,7 @@
  */
 package gatos;
 
+import java.awt.Dimension;
 import processing.core.PApplet;
 import processing.core.PFont;
 
@@ -40,7 +41,7 @@ public class Gatos extends PApplet {
         altoImagen =  altoGato * 10;
         size(100, altoImagen + 30);
         frame.setResizable(true);
-        frame.setSize(anchoImagen + 50, altoImagen + 50);
+        size(displayWidth, displayHeight);
         setLocation(200, 200);
         background(200);
         fuente = createFont("Arial",12,true);
@@ -57,7 +58,7 @@ public class Gatos extends PApplet {
           System.out.println("Profundidad " + profundidad + ':');
           System.out.println("DiÃ¡metro mÃ¡ximo " + diametroMaximo + ". Nodos en el Ãºltimo nivel: " + listaAbierta.size());
           anchoImagen = anchoGato * diametroMaximo + 30;
-          frame.setSize(anchoImagen, altoImagen + 70);
+          //frame.setSize(anchoImagen, altoImagen + 70);
           background(200);
           modificaVentana = false;
         }

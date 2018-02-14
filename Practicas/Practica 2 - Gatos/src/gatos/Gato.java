@@ -6,6 +6,7 @@
 package gatos;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * Clase para representar un estado del juego del gato. 
@@ -91,7 +92,39 @@ public class Gato {
      * Los estados nuevos tendrÃ¡n una tirada mÃ¡s y el jugador en turno serÃ¡ el jugador contrario.
      */
     LinkedList<Gato> generaSucesores(){
-      return null;
+       if (hayGanador){
+           return null;
+       } else {
+           // Inicializo la lista de sucesores
+           this.sucesores = new LinkedList<>();
+           
+           for (int i = 0; i < 3; i++) {
+               for (int j = 0; j < 3; j++) {
+                   // Si no han tirado
+                   if (this.tablero[i][j] == 0){
+                       // Gato auxiliar que es igual al actual y se tira en ese
+                       Gato gatoAux = new Gato(this);
+                       gatoAux.padre = this;
+                       gatoAux.jugador1 = !jugador1;
+                       gatoAux.tiraEn(j, i);
+                       
+                       boolean valido = true;
+                       // Ver si el generado es igual a una en la lista de sucesores
+                       for (Gato gato : this.sucesores) {
+                           // Checar rotaciones, simetrias
+                           if(gato.equals(gatoAux)){
+                               valido = false;
+                               break;
+                           }
+                       }
+                       // Ver si lo agregamos
+                       if(valido)
+                          this.sucesores.add(gatoAux);   
+                   }
+               }
+           }
+           return this.sucesores;
+       } 
     }
 
 
@@ -110,47 +143,75 @@ public class Gato {
       }
       return true;
     }
-
+    
     /** Al reflejar el gato sobre la diagonal \ son iguales (ie traspuesta) */
     boolean esSimetricoDiagonalInvertida(Gato otro){
-      
-      return true;
+       for (int i = 0; i < 3; i++)
+           for (int j = 0; j < 3; j++)
+               if (tablero[i][j] != otro.tablero[j][i])
+                   return false;
+
+       return true;
     }
 
     /** Al reflejar el gato sobre la diagonal / son iguales (ie traspuesta) */
     boolean esSimetricoDiagonal(Gato otro){
-      
+       for (int i = 0; i < 3; i++)
+          for (int j = 0; j < 3; j++)
+              if (tablero[i][j] != otro.tablero[2-j][2-i])
+                  return false;
+
       return true;
     }
 
     /** Al reflejar el otro gato sobre la vertical son iguales */
     boolean esSimetricoVerticalmente(Gato otro){
-      
-      return true;
+       for (int i = 0; i < 3; i++)
+           for (int j = 0; j < 3; j++)
+               if (tablero[i][j] != otro.tablero[2 - i][j])
+                   return false;
+
+       return true;
     }
 
     /** Al reflejar el otro gato sobre la horizontal son iguales */
     boolean esSimetricoHorizontalmente(Gato otro){
-      
-      return true;
+       for (int i = 0; i < 3; i++)
+           for (int j = 0; j < 3; j++)
+               if (tablero[i][j] != otro.tablero[i][2 - j])
+                   return false;
+                   
+       return true;
     }
 
     /** Rota el otro tablero 90Â° en la direcciÃ³n de las manecillas del reloj. */
     boolean esSimetrico90(Gato otro){
-      
-      return true;
+        Gato aux = new Gato();
+        for (int i = 0; i < 3; i++)
+           for (int j = 0; j < 3; j++)
+              aux.tablero[j][2-i] = otro.tablero[i][j];   
+              
+       return this.esIgual(aux);
     }
 
     /** Rota el otro tablero 180Â° en la direcciÃ³n de las manecillas del reloj. */
     boolean esSimetrico180(Gato otro){
-      
-      return true;
+        Gato aux = new Gato();
+        for (int i = 0; i < 3; i++)
+           for (int j = 0; j < 3; j++)
+               aux.tablero[2-i][2-j] = otro.tablero[i][j];
+        
+        return this.esIgual(aux);
     }
 
     /** Rota el otro tablero 270Â° en la direcciÃ³n de las manecillas del reloj. */
     boolean esSimetrico270(Gato otro){
-      
-      return true;
+        Gato aux = new Gato();
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                aux.tablero[2-j][i] = otro.tablero[i][j];
+
+        return this.esIgual(aux);
     }
 
     /**
