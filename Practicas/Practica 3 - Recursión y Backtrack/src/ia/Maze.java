@@ -18,8 +18,8 @@ public class Maze extends PApplet {
 
     /// Hola ayudante o persona que me va a calificar la práctica, estas
     /// constantes las puedas probar con diferentes tamaños.
-    final int CELL_HEIGHT = 15;
-    final int CELL_WIDTH = 15;
+    final int CELL_HEIGHT = 20;
+    final int CELL_WIDTH = 20;
     final int CELL_SIZE = 30;
 
     final float fpsRefreshRate = 60f;
