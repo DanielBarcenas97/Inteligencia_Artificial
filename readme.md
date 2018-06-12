@@ -17,13 +17,13 @@ En su gran mayoría de prácticas utilicé solo un editor de texto y la terminal
 algunas donde se hicieron en Java y tuvimos que utilizar **Netbeans** (el cual detesto usar).
 
 ## Prácticas
-  - Práctica 1: [Termitas]()
-  - Práctica 2: [Gatos]()
-  - Práctica 3: [Recursión y Backtrack]()
-  - Práctica 4: [Algorítmo A*]()
-  - Práctica 5: [Regresión y clasificación]()
-  - Práctica 7: [Algorítmos genéticos]()
-  - Práctica 8: [Factores]()
+  - Práctica 1: Termitas
+  - Práctica 2: Gatos
+  - Práctica 3: Recursión y Backtrack
+  - Práctica 4: Algorítmo A*
+  - Práctica 5: Regresión y clasificación
+  - Práctica 7: Algorítmos genéticos
+  - Práctica 8: Factores
 
 Cada práctica incluye un `doc.pdf` que indica qué es lo que se debe realizar en la práctica 
 y un `readme.txt`. *Se saltó de la práctica 5 a 7, no es que no hubiera práctica 6.*
